@@ -34,22 +34,22 @@ const UserSchema = new Schema(
       },
     ],
   },
-  { 
+  {
     toJSON: {
       virtuals: true,
-      getters: true
+      getters: true,
     },
-    id: false
+    id: false,
   }
 );
 
-
 // create the User Model using the Schema
-const User = model('User', UserSchema);
+const User = model("User", UserSchema);
 
+// get total count of comments and replies on retrieval
+UserSchema.virtual("friendCount").get(function () {
+  return this.friends.length;
+});
 
-
-
-
-  // export the User model
-  module.exports = User;
+// export the User model
+module.exports = User;
