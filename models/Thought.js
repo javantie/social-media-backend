@@ -1,4 +1,5 @@
 const { Schema, model, Types } = require("mongoose");
+const User = require('./User')
 
 const ReactionSchema = new Schema(
   {
@@ -21,16 +22,15 @@ const ReactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (createdAtVal) =>
-        moment(createdAtVal).format("MMM DD, YYYY [at] hh:mm a"),
     },
+    
   },
-
   {
     toJSON: {
       getters: true,
     },
-  }
+    id: false
+  },
 );
 
 const ThoughtSchema = new Schema(
@@ -66,7 +66,7 @@ const ThoughtSchema = new Schema(
 );
 
 // get total count of comments and replies on retrieval
-ThoughtSchema.virtual("reactioncount").get(function () {
+ThoughtSchema.virtual("reactionCount").get(function () {
   return this.reactions.length;
 });
 
