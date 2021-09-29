@@ -2,7 +2,7 @@ const router = require('express').Router();
 const userRoutes = require('./api/user-routes');
 const thoughtRoutes = require('./api/thought-routes');
 
-// add prefix of `/users` to routes created in `user-routes.js`
+// Setup the prefix for the routes created user and thoughts. 
 router.use('/api/users', userRoutes);
 router.use('/api/thoughts', thoughtRoutes);
 router.use((req, res) => {
